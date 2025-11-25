@@ -1,0 +1,19 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+
+namespace apiAutenticacao.Data
+{
+    public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
+    {
+        public AppDbContext CreateDbContext(string[] args)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
+
+            // Use a MESMA connection string do appsettings.json
+            optionsBuilder.UseSqlServer(
+                "Server=(localdb)\\MSSQLLocalDB;Database=apiAutenticacao;Trusted_Connection=true;TrustServerCertificate=true");
+
+            return new AppDbContext(optionsBuilder.Options);
+        }
+    }
+}
