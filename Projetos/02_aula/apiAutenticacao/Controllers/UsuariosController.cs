@@ -80,6 +80,25 @@ namespace apiAutenticacao.Controllers
         }
 
 
+        [HttpPatch("InativarUsuario")]
+
+        public async Task<IActionResult> InativarUsuario([FromBody] DeleteUsuarioDTO dadosInativarUsuario)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            ResponseDelete response = await _authService.DeletarUsuarioAsync(dadosInativarUsuario);
+            if (response.Erro)
+            {
+                return BadRequest(response);
+            }
+            return Ok(response);
+        }
+
+
+
+
 
     }
 

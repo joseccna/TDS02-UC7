@@ -33,6 +33,22 @@
   },
   {
     "ContainingType": "apiAutenticacao.Controllers.UsuariosController",
+    "Method": "InativarUsuario",
+    "RelativePath": "api/Usuarios/InativarUsuario",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dadosInativarUsuario",
+        "Type": "apiAutenticacao.Models.DTO.DeleteUsuarioDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "apiAutenticacao.Controllers.UsuariosController",
     "Method": "Login",
     "RelativePath": "api/Usuarios/login",
     "HttpMethod": "POST",

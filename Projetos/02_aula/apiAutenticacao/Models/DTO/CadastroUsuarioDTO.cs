@@ -4,8 +4,8 @@ namespace apiAutenticacao.Models.DTO
 {
     public class CadastroUsuarioDTO
     {
-        [Required(ErrorMessage = "O email é um campo obrigatório")]
-        [StringLength(100, MinimumLength = 3)]
+        [Required(ErrorMessage = "O Nome é um campo obrigatório")]
+        [StringLength(100, MinimumLength = 2)]
         public string Nome { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "O email é obrigatório")]

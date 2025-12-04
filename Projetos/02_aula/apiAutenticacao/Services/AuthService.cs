@@ -33,6 +33,8 @@ namespace apiAutenticacao.Services
                 // Verifica se a senha fornecida corresponde à senha armazenada 
                 bool isValidPassword = Verify(dadosUsuario.Senha, usuarioEncontrado.Senha);
 
+
+
                 if (isValidPassword)
                 {
                     return new ResponseLogin
@@ -141,6 +143,41 @@ namespace apiAutenticacao.Services
 
 
         }
+
+        public async Task<ResponseDelete> DeletarUsuarioAsync(DeleteUsuarioDTO NomeUsuario)
+        {
+            Usuario? usuario = await _context.Usuarios
+                .FirstOrDefaultAsync(u => u.Nome == NomeUsuario.Nome);
+            if (usuario == null)
+            {
+                return new ResponseDelete
+                {
+                    Erro = true,
+                    Message = "Usuário não encontrado."
+                };
+            }
+
+            if (!usuario.Ativo)
+            {
+                return new ResponseDelete
+                {
+                    Erro = true,
+                    Message = "Usuário já está inativo."
+                };
+            }
+
+            usuario.Ativo = false;
+
+            await _context.SaveChangesAsync();
+            return new ResponseDelete
+            {
+                Erro = false,
+                Message = "Usuário deletado com sucesso."
+            };
+        
+        }
+
+
 
     }
 
